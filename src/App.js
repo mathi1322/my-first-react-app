@@ -6,7 +6,7 @@ import TicTacToe from './TicTacToe.js';
 function App() {
   return (
     <div>
-      <Counter />
+      <Counter /> <br/>
       <TicTacToe />
     </div>
   );
