@@ -6,7 +6,7 @@ function Counter() {
   const [change, setChange] = useState(1);
   const increaseCount = () => setCount(prevCount => prevCount + parseInt(change) );
   const decreaseCount = () => {
-    //debugger;
+    //debugger; 
     if (count >= 0 && (count - change) >= 0) {
       setCount(prevCount => prevCount - parseInt(change));
     }
@@ -19,11 +19,11 @@ function Counter() {
   return (
     <div className="counter">
       <h1> Click Count: {count}</h1>
-      <button onClick={increaseCount} >Increase</button>
-      <button onClick={decreaseCount} >Decrease</button>
-      <button onClick={resetCount} >Reset</button><br /><br/>
+      <button className='btn' onClick={increaseCount} >Increase</button>
+      <button className='btn' onClick={decreaseCount} >Decrease</button>
+      <button className='btn' onClick={resetCount} >Reset</button><br /><br/>
       Change by:
-      <input onChange={handleChange} type="number" min="1" max="5" step="1"></input>
+      <input className='btn' onChange={handleChange} type="number" min="1" max="5" step="1"></input>
     </div>
   );
 }
