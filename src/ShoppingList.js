@@ -1,37 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import reactDom from 'react-dom';
 import './ShoppingList.css';
 
-class ShoppingList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setState({
-      // listing: displaying
-    })
-  }
-  showlist(){
-    
-  }
+const colorMap = {
+  black: 'red',
+  red:'green',
+  green:'black'
+};
 
-  render() {
-    return (
-      <div>
-        <div className='justify'>
-          <div className='shop'>
-            <div className='bton' onChange='showlist'>Showlist</div>
-          </div>
-        </div><br/>
-        <div className='justify'>
-          <div className='list'>
-            <div className='listItem'>coffee</div>
-            <div className='listItem'>snacks</div>
-            <div className='listItem'>chicken</div>
-            <div className='listItem'>onion</div>
-            <div className='listItem'>masala</div>
-          </div>
-        </div>
-      </div>
-    );
+function ShoppingList() {
+  const [color, setColor] = useState('black');
+  const [message, setMessage] = useState('');
+  const style = {
+    color,
+    fontSize: '100px'
+  };
+  const handleClick = () => {
+    const newColor = colorMap[color];
+    const newMessage = newColor == 'black' ? '' : `I'm ${newColor}`; 
+    setColor(newColor);
+    setMessage(newMessage);
   }
+  return (
+    <div className='justify'>
+      <button
+        style = {style} 
+        onClick = {handleClick}
+      > 
+        Hi!
+      </button>
+      <span>{message}</span>
+    </div>
+  );
 }
 
 export default ShoppingList;
