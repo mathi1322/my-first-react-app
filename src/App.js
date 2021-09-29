@@ -7,9 +7,9 @@ import ShoppingList from './ShoppingList.js'
 function App() {
   return (
     <div>
-      <Counter /> <br/>
+      {/* <Counter /> <br/> */}
       <ShoppingList /> <br/>
-      <TicTacToe />
+      {/* <TicTacToe /> */}
     </div>
   );
 }
