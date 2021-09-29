@@ -2,34 +2,34 @@ import React, { useState } from 'react';
 import reactDom from 'react-dom';
 import './ShoppingList.css';
 
-const colorMap = {
-  black: 'red',
-  red:'green',
-  green:'black'
-};
-
 function ShoppingList() {
-  const [color, setColor] = useState('black');
-  const [message, setMessage] = useState('');
+  const [display, setDisplay] = useState('show');
+  const [list, setList] = useState('');
   const style = {
-    color,
-    fontSize: '100px'
+    color: 'black',
+    fontSize: '50px'
   };
+  const myItems = ['laptop','speakers','mic','amplifier','instruments'];
+  const listItems = myItems.map( (item) => {
+    return <li>{item}</li>
+  });
   const handleClick = () => {
-    const newColor = colorMap[color];
-    const newMessage = newColor == 'black' ? '' : `I'm ${newColor}`; 
-    setColor(newColor);
-    setMessage(newMessage);
+    display == 'show' ? setDisplay('hide') : setDisplay('show') ;
+    list == '' ? setList(listItems) : setList('');
   }
   return (
     <div className='justify'>
-      <button
-        style = {style} 
-        onClick = {handleClick}
-      > 
-        Hi!
-      </button>
-      <span>{message}</span>
+      <div>
+        <button
+          style = {style} 
+          onClick = {handleClick}
+        > 
+          {display}
+        </button>
+        <div>
+          <ul>{list}</ul>
+        </div>
+      </div>
     </div>
   );
 }
