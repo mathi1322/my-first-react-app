@@ -4,7 +4,7 @@ import './ShoppingList.css';
 
 const List = props => {
   return props.items.map((item) => {
-    return <li>{item}</li>
+    return <div className={props.className}  >{item}</div>
   });
 };
 
@@ -12,27 +12,28 @@ function ShoppingList() {
   const [display, setDisplay] = useState('show');
   const [list, setList] = useState([]);
   const style = {
-    color: 'black',
-    fontSize: '50px'
+    fontSize: '25px'
   };
-  const myItems = ['laptop','speakers','mic','amplifier','instruments'];
+  const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
   const handleClick = () => {
-    display == 'show' ? setDisplay('hide') : setDisplay('show') ;
+    display == 'show' ? setDisplay('hide') : setDisplay('show');
     list.length === 0 ? setList(myItems) : setList([]);
+
   }
+  const classStr = display === "show" ? "showbtn" : "hidebtn";
+  const btn = display === "show" ? " " : "list"
   return (
     <div className='justify'>
       <div>
         <button
-          style = {style} 
-          onClick = {handleClick}
-        > 
+          className={classStr}
+          style={style}
+          onClick={handleClick}
+        >
           {display}
         </button>
-        <div>
-          <ul>
-            <List items={list}/>
-          </ul>
+        <div className={btn}>
+          <List className='a' items={list} />
         </div>
       </div>
     </div>
