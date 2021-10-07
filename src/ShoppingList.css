@@ -1,12 +1,7 @@
 .bton{
-  display: flex;
-  flex: 1;
   border: 1px solid black;
-  justify-content: center;
-  align-items: center;
 }
 .list{
-  /* background-color: lightgrey; */
   padding-right: 10px;
   padding-left: 10px;
   padding-top: 5px;
@@ -28,12 +23,12 @@
 .shop:hover {
   color: aquamarine;
 }
-.a{
+.shopitem{
   color: blue;
   background-color: lightgray;
   padding: 10px;
 }
-.a:hover{
+.shopitem:hover{
   color: white;
   background-color: rgb(100, 60, 60);
 }

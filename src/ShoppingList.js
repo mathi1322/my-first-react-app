@@ -33,7 +33,7 @@ function ShoppingList() {
           {display}
         </button>
         <div className={btn}>
-          <List className='a' items={list} />
+          <List className='shopitem' items={list} />
         </div>
       </div>
     </div>
