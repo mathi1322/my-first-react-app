@@ -4,36 +4,34 @@ import './ShoppingList.css';
 
 const List = props => {
   return props.items.map((item) => {
-    return <div className={props.className}  >{item}</div>
+    return (
+      <div className = {props.className}>
+      <div className = 'shop-item'> {item} </div>
+      </div>
+    );
   });
 };
 
 function ShoppingList() {
-  const [display, setDisplay] = useState('show');
-  const [list, setList] = useState([]);
-  const style = {
-    fontSize: '25px'
-  };
+  const [display, setDisplay] = useState(true);
   const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
   const handleClick = () => {
-    display == 'show' ? setDisplay('hide') : setDisplay('show');
-    list.length === 0 ? setList(myItems) : setList([]);
-
+    display ? setDisplay(false) : setDisplay(true);
   }
-  const classStr = display === "show" ? "showbtn" : "hidebtn";
-  const btn = display === "show" ? " " : "list"
+  const buttonClass = display ? "show-button" : "hide-button";
+  const buttonText = display ? "show" : "hide";
+  const list = display ? "show-list" : "hide-list";
   return (
-    <div className='justify'>
+    <div className = 'justify'>
       <div>
         <button
-          className={classStr}
-          style={style}
-          onClick={handleClick}
+          className = {buttonClass}
+          onClick = {handleClick}
         >
-          {display}
+          {buttonText}
         </button>
-        <div className={btn}>
-          <List className='shopitem' items={list} />
+        <div>
+          <List className = {list} items = {myItems}/>
         </div>
       </div>
     </div>
