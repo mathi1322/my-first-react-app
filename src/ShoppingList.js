@@ -4,35 +4,34 @@ import './ShoppingList.css';
 
 const List = props => {
   return props.items.map((item) => {
-    return <li>{item}</li>
+    return (
+      <div className = {props.className}>
+      <div className = 'shop-item'> {item} </div>
+      </div>
+    );
   });
 };
 
 function ShoppingList() {
-  const [display, setDisplay] = useState('show');
-  const [list, setList] = useState([]);
-  const style = {
-    color: 'black',
-    fontSize: '50px'
-  };
-  const myItems = ['laptop','speakers','mic','amplifier','instruments'];
+  const [display, setDisplay] = useState(true);
+  const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
   const handleClick = () => {
-    display == 'show' ? setDisplay('hide') : setDisplay('show') ;
-    list.length === 0 ? setList(myItems) : setList([]);
+    display ? setDisplay(false) : setDisplay(true);
   }
+  const buttonClass = display ? "show-button" : "hide-button";
+  const buttonText = display ? "show" : "hide";
+  const list = display ? "show-list" : "hide-list";
   return (
-    <div className='justify'>
+    <div className = 'justify'>
       <div>
         <button
-          style = {style} 
+          className = {buttonClass}
           onClick = {handleClick}
-        > 
-          {display}
+        >
+          {buttonText}
         </button>
         <div>
-          <ul>
-            <List items={list}/>
-          </ul>
+          <List className = {list} items = {myItems}/>
         </div>
       </div>
     </div>

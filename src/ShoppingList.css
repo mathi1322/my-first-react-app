@@ -1,23 +1,30 @@
-.shop{
-  display: flex;
-  height: 50px;
-  width: 100px;
+.hide-button{
+  margin: auto;
+  font-size: 25px;
+  width: 200px;
+  color: white;
+  background-color: rgb(42, 64, 136);
 }
-.bton{
-  display: flex;
-  flex: 1;
-  border: 1px solid black;
-  justify-content: center;
-  align-items: center;
+.show-button{
+  display: hidden;
+  font-size: 25px;
+  margin: auto; 
+  width: 200px;
+  color: rgb(42, 64, 136);
+  background-color: white;
 }
-.list{
-  display: grid;
-  height: 300px;
-  width: 500px;
-  border: 1px solid black;  
-  align-items: center;
-  justify-content: center;
+.shop-item{
+  color: blue;
+  background-color: lightgray;
+  padding: 10px;
 }
-.listItem{
-  display: flex;
+.shop-item:hover{
+  color: white;
+  background-color: rgb(100, 60, 60);
+}
+.show-list{
+  display: none;
+}
+.hide-list{
+  display: block;
 }
