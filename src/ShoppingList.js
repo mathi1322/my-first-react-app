@@ -15,21 +15,21 @@ const List = props => {
 function ShoppingList() {
   const [display, setDisplay] = useState(true);
   const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
-  const handleClick = () => {
-    display ? setDisplay(false) : setDisplay(true);
-  }
-  const buttonClass = display ? "show-button" : "hide-button";
-  const buttonText = display ? "show" : "hide";
+  const handleChange = () => {
+    setDisplay(false)
+  };
+  const offChange = () => {
+    setDisplay(true)
+  };
   const list = display ? "show-list" : "hide-list";
   return (
     <div className = 'justify'>
       <div>
-        <button
-          className = {buttonClass}
-          onClick = {handleClick}
-        >
-          {buttonText}
-        </button>
+        <input
+          placeholder = "Enter Items"
+          onFocus = {handleChange}
+          onBlur = {offChange}
+        />
         <div>
           <List className = {list} items = {myItems}/>
         </div>
