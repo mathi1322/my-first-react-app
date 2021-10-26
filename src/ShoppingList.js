@@ -1,37 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import reactDom from 'react-dom';
 import './ShoppingList.css';
 
+const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
 const List = props => {
   return props.items.map((item) => {
     return (
-      <div className = {props.className}>
-      <div className = 'shop-item'> {item} </div>
+      <div className='shop-item' onClick={() => props.clickItem(item)}>
+        {item}
       </div>
     );
   });
 };
 
 function ShoppingList() {
-  const [display, setDisplay] = useState(true);
-  const myItems = ['laptop', 'speakers', 'mic', 'amplifier', 'instruments'];
+  const [itemsVisibility, setItemsVisibility] = useState(false);
+  const [item, setItem] = useState('');
+  const availableItems = itemsVisibility ? "hide-list" : "show-list";
+  useEffect(() => {
+    document.addEventListener('click', (e) => {
+      if (e.target.className !== 'shop-item' && e.target.className !== 'input-field'){
+        setItemsVisibility(false);
+      }
+    })
+  }, [])
   const handleChange = () => {
-    setDisplay(false)
+    setItemsVisibility(true)
   };
-  const offChange = () => {
-    setDisplay(true)
-  };
-  const list = display ? "show-list" : "hide-list";
   return (
-    <div className = 'justify'>
+    <div className='justify'>
       <div>
         <input
-          placeholder = "Enter Items"
-          onFocus = {handleChange}
-          onBlur = {offChange}
+          className='input-field'
+          value={item}
+          placeholder="Enter Items"
+          onFocus={handleChange}
         />
-        <div>
-          <List className = {list} items = {myItems}/>
+        <div className={availableItems}>
+          <List items={myItems} clickItem={(item) => { 
+            setItem(item);
+            setItemsVisibility();
+            }}
+          />
         </div>
       </div>
     </div>
