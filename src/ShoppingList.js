@@ -15,8 +15,19 @@ const List = props => {
 
 function ShoppingList() {
   const [itemsVisibility, setItemsVisibility] = useState(false);
-  const [item, setItem] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState(myItems);
   const availableItems = itemsVisibility ? "hide-list" : "show-list";
+  
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  const focusChange = () => {
+    setItemsVisibility(true)
+  };
+  
+  
   useEffect(() => {
     document.addEventListener('click', (e) => {
       if (e.target.className !== 'shop-item' && e.target.className !== 'input-field'){
@@ -24,21 +35,28 @@ function ShoppingList() {
       }
     })
   }, [])
-  const handleChange = () => {
-    setItemsVisibility(true)
-  };
+  
+  useEffect(() => {
+    const results = myItems.filter(item =>
+      item.toLowerCase().includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
+  
   return (
     <div className='justify'>
       <div>
         <input
           className='input-field'
-          value={item}
+          value={searchTerm}
           placeholder="Enter Items"
-          onFocus={handleChange}
+          onFocus={focusChange}
+          onChange={handleChange}
         />
         <div className={availableItems}>
-          <List items={myItems} clickItem={(item) => { 
-            setItem(item);
+          <List items={searchResults} clickItem={(item) => { 
+            setSearchTerm(item);
             setItemsVisibility();
             }}
           />
