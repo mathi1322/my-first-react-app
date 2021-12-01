@@ -27,13 +27,16 @@ function ShoppingList() {
     setItemsVisibility(true)
   };
   
-  
-  useEffect(() => {
-    document.addEventListener('click', (e) => {
+  const clickHandler = (e) => {
       if (e.target.className !== 'shop-item' && e.target.className !== 'input-field'){
         setItemsVisibility(false);
       }
-    })
+    }
+  useEffect(() => {
+    document.addEventListener('click', clickHandler);
+    return ()=>{
+      document.removeEventListener('click', clickHandler);
+    }
   }, [])
   
   useEffect(() => {
